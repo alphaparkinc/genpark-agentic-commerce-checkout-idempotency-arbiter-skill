@@ -1,0 +1,65 @@
+{
+  "name": "genpark-agentic-commerce-checkout-idempotency-arbiter-skill",
+  "version": "1.0.0",
+  "title": "Headless Checkout Idempotency & Concurrency Lock Arbiter Skill",
+  "description": "Distributed e-commerce checkout UUID idempotency lock, duplicate charge prevention, and network partition order reservation reconciler. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "agentic-commerce",
+  "topics": [
+    "idempotency",
+    "checkout-lock",
+    "duplicate-charge-prevention",
+    "distributed-systems",
+    "agentic-commerce",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "evaluate_idempotency_key_status",
+      "description": "Verify idempotency key validity, detect concurrent in-flight requests, and return cached payload to prevent duplicate charging.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "idempotency_key": {
+            "type": "string"
+          },
+          "request_hash": {
+            "type": "string"
+          },
+          "stored_records": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "idempotency_key",
+          "request_hash"
+        ]
+      }
+    },
+    {
+      "name": "generate_distributed_idempotency_token",
+      "description": "Generate cryptographically secure SHA-256 idempotency signature from cart items, customer ID, and payment amount.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "cart_id": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "total_amount_cents": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "cart_id",
+          "customer_id",
+          "total_amount_cents"
+        ]
+      }
+    }
+  ]
+}
